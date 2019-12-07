@@ -50,4 +50,15 @@ function reverseStringLoop(str) {
   console.log("reversed: ", reversed);
   return reversed;
 }
-reverseStringLoop("banana");
+// reverseStringLoop("banana");
+
+//
+// 1.3. Reverse string with reduce.
+function reverseStringWithReduce(str) {
+  const reversedArr = str.split("").reduce((acc, char) => {
+    acc = char + acc;
+    return acc;
+  }, "");
+  console.log(reversedArr);
+}
+reverseStringWithReduce("Orange");
