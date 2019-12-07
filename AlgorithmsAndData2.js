@@ -19,7 +19,7 @@ function fizBazz(number) {
 // fizBazz();
 
 //
-// 1. Reverse a string - recursion.
+// 1.1 Reverse a string - recursively.
 function reverseString(str) {
   if (typeof str == "string") {
     let reversed = "";
@@ -38,4 +38,16 @@ function reverseString(str) {
     return false;
   }
 }
-reverseString("apple");
+// reverseString("apple");
+
+//
+// 1.2. Reverse string with for of loop.
+function reverseStringLoop(str) {
+  let reversed = "";
+  for (let letter of str) {
+    reversed = letter + reversed;
+  }
+  console.log("reversed: ", reversed);
+  return reversed;
+}
+reverseStringLoop("banana");
