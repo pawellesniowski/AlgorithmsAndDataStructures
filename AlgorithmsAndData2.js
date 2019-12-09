@@ -88,5 +88,16 @@ function isPalindrome2(str) {
     }
     return str.split('').every(compareChar)
 }
-console.log(isPalindrome2('bb'));
+// console.log(isPalindrome2('bb'));
+
+//
+// 3. Reverse Integer 
+// 51 -> 15
+// -987 -> -789
+// -1 -> -1
+function reverseInteger(num) {
+    const sign = Math.sign(num);
+    return parseInt((sign * num + '').split('').reverse().join('')) * sign;
+}
+console.log(reverseInteger(-15));
 
