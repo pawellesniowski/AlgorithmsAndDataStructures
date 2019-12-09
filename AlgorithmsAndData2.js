@@ -65,7 +65,7 @@ function reverseStringWithReduce(str) {
 
 
 //
-// 2. Palindromes
+// 2.2 Palindromes with for of loop
 function isPalindrome(str) {
     if (typeof str !== 'string') {
         return 'not a string';
@@ -81,4 +81,12 @@ function isPalindrome(str) {
 // console.log(isPalindrome('Appa'));
 
 //
-// 
+// 2.2. Palindromes with every function
+function isPalindrome2(str) {
+    function compareChar(element, index, arr) {
+        return element == arr[arr.length - 1 - index]
+    }
+    return str.split('').every(compareChar)
+}
+console.log(isPalindrome2('bb'));
+
