@@ -99,5 +99,40 @@ function reverseInteger(num) {
     const sign = Math.sign(num);
     return parseInt((sign * num + '').split('').reverse().join('')) * sign;
 }
-console.log(reverseInteger(-15));
+// console.log(reverseInteger(-15));
 
+
+//
+// 4. Check if strings are anagrams
+// Has string A the same chracters as has sting B ? (Anagram).
+// Does given string have any repeated characters in it ?
+// helper function:
+function addToMap(str, map) {
+    for (let char of str) {
+        map[char] = map[char] + 1 || 1;
+    }
+}
+// helper function:
+function compareMaps(mapA, mapB) {
+    if (Object.keys(mapA).length !== Object.keys(mapB).length) {
+        return false;
+    }
+    for (let prop in mapA) {
+        if (mapA[prop] !== mapB[prop]) {
+            return false;
+        }
+    }
+    return true;
+}
+// main function, starts here:
+function defineIfAnagram(strA, strB) {
+    if (strA == strB) {
+        return true;
+    }
+    const mapA = {};
+    const mapB = {};
+    addToMap(strA, mapA);
+    addToMap(strB, mapB);
+    return compareMaps(mapA, mapB);
+}
+console.log(defineIfAnagram("aaac", "caaac"));
