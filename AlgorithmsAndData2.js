@@ -2,7 +2,7 @@
 
 //
 // 4. Check if strings are anagrams
-// Has string A the same chracters as has sting B ? (Anagram).
+// Has string A the same chracters (dont care about non alphabetical characters) + numbers as has sting B ? (Anagram).
 // Does given string have any repeated characters in it ?
 // helper function:
 function addToMap(str, map) {
@@ -22,18 +22,27 @@ function compareMaps(mapA, mapB) {
     }
     return true;
 }
+function removeNonAlphabetical(characters) {
+    const re = /[^\w+]/g;
+    const letters = characters.replace(re, '');
+    return letters;
+}
+
 // main function, starts here:
-function defineIfAnagram(strA, strB) {
-    if (strA == strB) {
+function defineIfAnagram(A, B) {
+    if (A == B) {
         return true;
     }
     const mapA = {};
     const mapB = {};
+    // get rid of non alphabetical characters:
+    const strA = removeNonAlphabetical(A).toLowerCase();
+    const strB = removeNonAlphabetical(B).toLowerCase();
     addToMap(strA, mapA);
     addToMap(strB, mapB);
     return compareMaps(mapA, mapB);
 }
-// console.log(defineIfAnagram("aaac", "caaac"));
+console.log(defineIfAnagram("rail! safety!@ ^", "fairy tales"));
 
 
 
