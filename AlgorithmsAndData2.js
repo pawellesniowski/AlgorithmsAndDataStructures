@@ -1,5 +1,7 @@
 "use strict";
 
+// 5. Populate MATRIX spin. 
+
 //
 // 4. Check if strings are anagrams
 // Has string A the same chracters (dont care about non alphabetical characters) + numbers as has sting B ? (Anagram).
