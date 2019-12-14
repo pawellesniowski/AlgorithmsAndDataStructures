@@ -1,6 +1,13 @@
 "use strict";
 
-// 5. Populate MATRIX spin. 
+// 5. Populate MATRIX spin. Function create quadratic Matrix array nad adds digits in spin order:
+// populateMatrixSpin(5) output: 5 x 5 Matrix array. 
+// [ [  1,  2,  3,  4, 5 ],
+//   [ 16, 17, 18, 19, 6 ],
+//   [ 15, 24, 25, 20, 7 ],
+//   [ 14, 23, 22, 21, 8 ],
+//   [ 13, 12, 11, 10, 9 ] ]
+
 function createMatrix(n) {
     return Array.from({ length: n }, () => new Array(n).fill(null))
 }
@@ -70,7 +77,6 @@ function populateMatrixSpin(n) {
     }
 
 }
-
 console.log(populateMatrixSpin(5))
 
 
