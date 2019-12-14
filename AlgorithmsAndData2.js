@@ -1,6 +1,79 @@
 "use strict";
 
 // 5. Populate MATRIX spin. 
+function createMatrix(n) {
+    return Array.from({ length: n }, () => new Array(n).fill(null))
+}
+function populateMatrixSpin(n) {
+    const matrix = createMatrix(n);
+    let itemsTotal = n * n;
+    let itemsPending = 0;
+
+    let counter = 1;
+    let startColumn = 0;
+    let endColumn = n - 1;
+    let startRow = 0;
+    let endRow = n - 1;
+    let m = 0;
+
+    console.log('itemsPending >= itemsTotal', itemsPending, itemsTotal)
+    while (true) {
+        if (itemsPending >= itemsTotal) {
+            return matrix;
+        }
+        for (let i = startColumn; i <= endColumn; i++) {
+            if (itemsPending >= itemsTotal) {
+                return matrix;
+            }
+            matrix[startRow][i] = counter;
+            counter++;
+            itemsPending++;
+        };
+        startRow++;
+        if (itemsPending >= itemsTotal) {
+            return matrix;
+        }
+        for (let i = startRow; i <= endRow; i++) {
+            if (itemsPending >= itemsTotal) {
+                return matrix;
+            }
+            matrix[i][endColumn] = counter;
+            counter++
+            itemsPending++;
+        };
+        endColumn--
+        if (itemsPending >= itemsTotal) {
+            return matrix;
+        }
+        for (let i = endColumn; i >= startColumn; i--) {
+            if (itemsPending >= itemsTotal) {
+                return matrix;
+            }
+            matrix[endRow][i] = counter;
+            counter++;
+            itemsPending++;
+        }
+        endRow--;
+        if (itemsPending >= itemsTotal) {
+            return matrix;
+        }
+        for (let i = endRow; i >= startRow; i--) {
+            if (itemsPending >= itemsTotal) {
+                return matrix;
+            }
+            matrix[i][startColumn] = counter;
+            counter++
+            itemsPending++;
+        }
+        startColumn++;
+
+    }
+
+}
+
+console.log(populateMatrixSpin(5))
+
+
 
 //
 // 4. Check if strings are anagrams
@@ -44,9 +117,8 @@ function defineIfAnagram(A, B) {
     addToMap(strB, mapB);
     return compareMaps(mapA, mapB);
 }
-console.log(defineIfAnagram("rail! safety!@ ^", "fairy tales"));
-
-
+// console.log(defineIfAnagram("rail! safety!@ ^", "fairy tales"));
+//
 
 // 3. Reverse Integer 
 // 51 -> 15
