@@ -1,5 +1,21 @@
 "use strict";
+// 6. Reformat input array to chanks.
+function chunkfy(arr, n) {
+    const chunks = [];
 
+    for (let i = 0; i < arr.length; i += n) {
+        if (arr[i + n]) {
+            chunks.push(arr.slice(i, i + n))
+        } else {
+            chunks.push(arr.slice(i, arr[arr.length]));
+        }
+    }
+
+    return chunks;
+}
+console.log(chunkfy([1, 2, 3, 4], 2));
+
+//
 // 5. Populate MATRIX spin. Function create quadratic Matrix array nad adds digits in spin order:
 // populateMatrixSpin(5) output: 5 x 5 Matrix array. 
 // [ [  1,  2,  3,  4, 5 ],
@@ -7,7 +23,6 @@
 //   [ 15, 24, 25, 20, 7 ],
 //   [ 14, 23, 22, 21, 8 ],
 //   [ 13, 12, 11, 10, 9 ] ]
-
 function createMatrix(n) {
     return Array.from({ length: n }, () => new Array(n).fill(null))
 }
@@ -15,15 +30,11 @@ function populateMatrixSpin(n) {
     const matrix = createMatrix(n);
     let itemsTotal = n * n;
     let itemsPending = 0;
-
     let counter = 1;
     let startColumn = 0;
     let endColumn = n - 1;
     let startRow = 0;
     let endRow = n - 1;
-    let m = 0;
-
-    console.log('itemsPending >= itemsTotal', itemsPending, itemsTotal)
     while (true) {
         if (itemsPending >= itemsTotal) {
             return matrix;
@@ -45,7 +56,7 @@ function populateMatrixSpin(n) {
                 return matrix;
             }
             matrix[i][endColumn] = counter;
-            counter++
+            counter++;
             itemsPending++;
         };
         endColumn--
@@ -69,16 +80,14 @@ function populateMatrixSpin(n) {
                 return matrix;
             }
             matrix[i][startColumn] = counter;
-            counter++
+            counter++;
             itemsPending++;
         }
         startColumn++;
-
     }
-
 }
-console.log(populateMatrixSpin(5))
-
+// console.log(populateMatrixSpin(5));
+//
 
 
 //
