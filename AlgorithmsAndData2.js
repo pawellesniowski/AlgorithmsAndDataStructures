@@ -1,10 +1,17 @@
 "use strict";
-// 8. JavaScript: Using "in" kay word.
-const obj8 = {
+// 8. Sentence Capitalization
+// function capitalize(str) {
+//     const firsLetterRegEx = //
+// }
+// console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
+//
+
+//
+// 7. JavaScript: Using "in" kay word.
+const obj7 = {
     name: 0,
     lastName: 0,
 }
-
 function inUse(obj) {
     if ('name' in obj) {
         console.log("name: ", obj.name);
@@ -16,18 +23,9 @@ function inUse(obj) {
     } else {
         console.log('no last name');
     }
-
 }
-
-inUse(obj8)
-
-// 7. Sentence Capitalization
-// function capitalize(str) {
-//     const firsLetterRegEx = //
-// }
-// console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
+// inUse(obj8)
 //
-
 
 // 
 // 6. Reformat input array to chunks.
