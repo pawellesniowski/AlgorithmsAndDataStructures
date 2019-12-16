@@ -1,5 +1,36 @@
 "use strict";
-// 6. Reformat input array to chanks.
+// 8. JavaScript: Using "in" kay word.
+const obj8 = {
+    name: 0,
+    lastName: 0,
+}
+
+function inUse(obj) {
+    if ('name' in obj) {
+        console.log("name: ", obj.name);
+    } else {
+        console.log('no name');
+    }
+    if ('lastName' in obj) {
+        console.log('lastName: ', obj.lastName)
+    } else {
+        console.log('no last name');
+    }
+
+}
+
+inUse(obj8)
+
+// 7. Sentence Capitalization
+// function capitalize(str) {
+//     const firsLetterRegEx = //
+// }
+// console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
+//
+
+
+// 
+// 6. Reformat input array to chunks.
 function chunkfy(arr, n) {
     const chunks = [];
 
@@ -13,7 +44,8 @@ function chunkfy(arr, n) {
 
     return chunks;
 }
-console.log(chunkfy([1, 2, 3, 4], 2));
+// console.log(chunkfy([1, 2, 3, 4], 2));
+// 
 
 //
 // 5. Populate MATRIX spin. Function create quadratic Matrix array nad adds digits in spin order:
