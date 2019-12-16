@@ -1,9 +1,12 @@
 "use strict";
+//
 // 8. Sentence Capitalization
-// function capitalize(str) {
-//     const firsLetterRegEx = //
-// }
-// console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
+function capitalize(str) {
+    const firsLetterRegEx = /r|(?<=\s)./g;
+    return str.replace(firsLetterRegEx, (match) => match.toUpperCase());
+
+}
+console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
 //
 
 //
