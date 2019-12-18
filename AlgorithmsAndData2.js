@@ -1,6 +1,9 @@
 "use strict";
 
-// 9. Steps made with # character 
+// 9.2. Steps made with # character: track row and column
+
+
+// 9.1. Steps made with # character with Array.
 // steps(5):
 // '#    
 // ##   
