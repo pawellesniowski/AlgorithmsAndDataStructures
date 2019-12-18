@@ -1,10 +1,29 @@
 "use strict";
+
+// 9. Steps made with # character 
+// steps(5):
+// '#    
+// ##   
+// ###  
+// #### 
+// #####
+function steps(n) {
+    for (let i = 0; i < n; i++) {
+        let arr = new Array(n).fill(' ');
+        for (let j = 0; j <= i; j++) {
+            arr[j] = '#';
+        }
+        console.log(arr.join(''));
+    }
+}
+steps(5);
 //
-// 8. Sentence Capitalization
+
+//
+// 8. Sentence Capitalization: Capitalize first letters with regEx
 function capitalize(str) {
     const firsLetterRegEx = /r|(?<=\s)./g;
     return str.replace(firsLetterRegEx, (match) => match.toUpperCase());
-
 }
 console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
 //
