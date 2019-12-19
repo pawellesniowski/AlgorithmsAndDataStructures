@@ -1,5 +1,24 @@
 'use strict';
 
+
+"19.08.2019"
+
+
+const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("OK");
+    }, 1000)
+    // reject('Rejected !!')
+});
+myPromise
+    .then((value1) => {
+        console.log(value1);
+        return value1;
+    })
+    .then((value2) => console.log(value2 + '!'))
+    .catch((v) => console.log(v));
+console.log(myPromise);
+
 "18.12.2019"
 // 1.5. Static methods in the class.  
 //  Static methods are called without instantiating their class and cannot be called through a class instance.
