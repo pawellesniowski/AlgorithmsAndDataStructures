@@ -1,11 +1,24 @@
-'use strict';
 
 "20.12.2019"
-// simulate servers response with Promises:
+
+// Promises: Composition
+//...
+
+// Promises: Promise.resolve(value) and Promise.reject() are shortcuts to manually create  an alredy resolved ar rejected promise. 
+
+// const myResolvedPromise = Promise.resolve('Success')
+// myResolvedPromise.then((v) => v + '!').then(v2 => console.log(v2))
+
+// const pr1 = Promise.resolve(Promise.resolve(Promise.resolve(21)));
+// const pr2 = pr1.then(v => console.log(v));
+
+// console.log(pr1, pr2)
+
+
+// Promises: simulate servers response with Promises:
 const serverDataResponse = () => ({
     data: [{ name: "Pawel" }, { name: "Ania" }, { name: "Adam" }, { name: "Lilia" }],
 })
-
 const fetchMock = (time) => new Promise((resolve, reject) => {
     if (Math.random() > 0.1) {
         setTimeout(resolve, time, serverDataResponse()); // third paramiter to settimeout is paramiter passed to resolve. you can use alse () => resolve(serverDataResponse()) as a first paramiter, ommiting third
