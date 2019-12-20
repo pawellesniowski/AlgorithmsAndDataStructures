@@ -1,11 +1,32 @@
 "use strict";
 
-// 9.2. Steps made with # character: track row and column
+// 9.2. Steps made with # character: recursive recursion
+function prinSteps(n, row = 0, step = '') {
+    if (n === row) {
+        return;
+    }
 
+    if (n === step.length) {
+        console.log(step);
+        return prinSteps(n, row + 1, '');
+    }
+
+    if (row >= step.length) {
+        step = step + "#";
+    } else {
+        step = step + ' ';
+    }
+
+    prinSteps(n, row, step);
+
+
+}
+prinSteps(10) // output print from 10 down to zero
+//
 
 // 9.1. Steps made with # character with Array.
 // steps(5):
-// '#    
+// #    
 // ##   
 // ###  
 // #### 
@@ -19,7 +40,7 @@ function steps(n) {
         console.log(arr.join(''));
     }
 }
-steps(5);
+// steps(5);
 //
 
 //
@@ -28,7 +49,7 @@ function capitalize(str) {
     const firsLetterRegEx = /r|(?<=\s)./g;
     return str.replace(firsLetterRegEx, (match) => match.toUpperCase());
 }
-console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
+// console.log(capitalize('red fox went home')); // output: "Red Fox Went Home"
 //
 
 //
