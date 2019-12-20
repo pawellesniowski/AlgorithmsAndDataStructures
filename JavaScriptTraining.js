@@ -1,23 +1,56 @@
 'use strict';
 
+"20.12.2019"
+// simulate servers response with Promises:
+const serverDataResponse = () => ({
+    data: [{ name: "Pawel" }, { name: "Ania" }, { name: "Adam" }, { name: "Lilia" }],
+})
 
-"19.08.2019"
-
-
-const myPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve("OK");
-    }, 1000)
-    // reject('Rejected !!')
-});
-myPromise
-    .then((value1) => {
-        console.log(value1);
-        return value1;
+const fetchMock = (time) => new Promise((resolve, reject) => {
+    if (Math.random() > 0.1) {
+        setTimeout(resolve, time, serverDataResponse()); // third paramiter to settimeout is paramiter passed to resolve. you can use alse () => resolve(serverDataResponse()) as a first paramiter, ommiting third
+    } else {
+        setTimeout(() => reject({ 'Server error: ': 404 }), 500);
+    }
+})
+fetchMock(2000)
+    .then(r => {
+        return r;
     })
-    .then((value2) => console.log(value2 + '!'))
-    .catch((v) => console.log(v));
-console.log(myPromise);
+    .then((d) => console.log('data: ', d))
+    .catch(e => console.log(e));
+
+
+
+// function executeWhenPromiseResolved() {
+//     console.log("time is up");
+// }
+// // Promises:
+// const wait = (time) => new Promise(resolve => {
+//     setTimeout(() => resolve({ data: [] }), time);
+// });
+// wait(3000)
+//     .then(executeWhenPromiseResolved)
+//     .catch((e) => console.log(e))
+
+
+"19.12.2019"
+// Promisses
+// function onSuccess(v) {
+//     console.log(v, "this was a great success");
+// }
+// function onFail() {
+//     console.log("this was epic fail ;-(");
+// }
+// new Promise((resolve, reject) => {
+//     // if (false) {
+//     setTimeout(() => {
+//         resolve("OK");
+//     }, 1000)
+//     // }
+//     // reject('Rejected !!');
+// }).then(onSuccess, onFail).then(() => console.log("I am done"));
+// myPromise.then(onSuccess, onFail);
 
 "18.12.2019"
 // 1.5. Static methods in the class.  
