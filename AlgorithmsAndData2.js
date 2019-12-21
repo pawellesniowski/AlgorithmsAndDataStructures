@@ -1,27 +1,65 @@
 "use strict";
 
+
+//
+// 10. reverse array
+const arrString = [1, 2, 3, 4, 5];
+function swap(s, i) {
+    const temp = s[i];
+    s[i] = s[s.length - 1 - i]
+    s[s.length - 1 - i] = temp;
+}
+var reverseString = function (s, i = 0) {
+    if (i >= s.length / 2) {
+        return;
+    }
+    swap(s, i);
+    reverseString(s, i + 1);
+};
+reverseString(arrString);
+console.log(arrString);
+
+
+// recursive problems with "like two loops inside each other"
+function printNumbers(n, message = '', row = n) {
+    if (row === 0) {
+        return;
+    }
+
+    if (message.length === row) {
+        console.log(message);
+        printNumbers(n, '', row - 1);
+        return;
+    }
+
+    if (message.length <= row) {
+        message += "#";
+    } else {
+        message += ' ';
+    }
+
+    printNumbers(n, message, row);
+
+}
+// printNumbers(100)
+
 // 9.2. Steps made with # character: recursive recursion
 function prinSteps(n, row = 0, step = '') {
     if (n === row) {
         return;
     }
-
     if (n === step.length) {
         console.log(step);
         return prinSteps(n, row + 1, '');
     }
-
     if (row >= step.length) {
         step = step + "#";
     } else {
         step = step + ' ';
     }
-
     prinSteps(n, row, step);
-
-
 }
-prinSteps(10) // output print from 10 down to zero
+// prinSteps(10) // output print from 10 down to zero
 //
 
 // 9.1. Steps made with # character with Array.
