@@ -1,6 +1,94 @@
+"02.01.2020"
+
+// Object.defineProperty
+const obj0201 = {};
+Object.defineProperty(obj0201, 'myProperty', { value: 43 });
+
+// Decorators:
+
+
+// composition:
+function doSomething(name) {
+    console.log('hello, ', name);
+    return 666;
+}
+function loggingDecorator(wrapped) {
+    return function () {
+        console.log('Starting Logging');
+        const result = wrapped.apply(this, arguments);
+        console.log('Finished logging');
+        return result;
+    }
+}
+const wrapped = loggingDecorator(doSomething);
+const result = wrapped('Pawel');
+console.log('result: ', result);
+
+'use strict';
+function say(name) {
+    console.log("My name is", name)
+}
+function sayMyName() {
+    say.apply(null, arguments);
+}
+// sayMyName('Pawel')
+
+
+
+"31.12.2019"
+// Dependency Injection
+// injcetor implementation: 
+var injector = {
+    dependencies: {},
+    register: function (key, value) {
+        this.dependencies[key] = value;
+    },
+    resolve: function (deps, func, scope) {
+        //...
+    }
+}
+
+// 1.3. Setter Injection:
+// 1.2. First way Constructor Injection:
+// class EmailService {
+//     send(title, message) {
+//         console.log('Sending mail...', title, message)
+//     }
+// }
+// class App {
+//     static $inject = ['EmailService'];
+//     constructor(emailService) {
+//         this.emailService = emailService;
+//     }
+//     sendEmail(title, message) {
+//         this.emailService.send(title, message);
+//     }
+// }
+// const emailService = new EmailService()
+// const myApp = new App(emailService);
+// myApp.sendEmail("ping", "pong");
+
+// 1.1. WRONG way:
+// class EmailService {
+//     send(title, message) {
+//         console.log('Sending mail...', title, message)
+//     }
+// }
+// class App {
+//     constructor() {
+//         this.emailService = new EmailService();
+//     }
+//     sendEmail(title, message) {
+//         this.emailService.send(title, message);
+//     }
+
+// }
+// const app = new App();
+// app.sendEmail('Dear boss', 'This is my work submission');
+
+
 
 "20.12.2019"
-
 // Promises: Composition
 //...
 
@@ -16,22 +104,22 @@
 
 
 // Promises: simulate servers response with Promises:
-const serverDataResponse = () => ({
-    data: [{ name: "Pawel" }, { name: "Ania" }, { name: "Adam" }, { name: "Lilia" }],
-})
-const fetchMock = (time) => new Promise((resolve, reject) => {
-    if (Math.random() > 0.1) {
-        setTimeout(resolve, time, serverDataResponse()); // third paramiter to settimeout is paramiter passed to resolve. you can use alse () => resolve(serverDataResponse()) as a first paramiter, ommiting third
-    } else {
-        setTimeout(() => reject({ 'Server error: ': 404 }), 500);
-    }
-})
-fetchMock(2000)
-    .then(r => {
-        return r;
-    })
-    .then((d) => console.log('data: ', d))
-    .catch(e => console.log(e));
+// const serverDataResponse = () => ({
+//     data: [{ name: "Pawel" }, { name: "Ania" }, { name: "Adam" }, { name: "Lilia" }],
+// })
+// const fetchMock = (time) => new Promise((resolve, reject) => {
+//     if (Math.random() > 0.1) {
+//         setTimeout(resolve, time, serverDataResponse()); // third paramiter to settimeout is paramiter passed to resolve. you can use alse () => resolve(serverDataResponse()) as a first paramiter, ommiting third
+//     } else {
+//         setTimeout(() => reject({ 'Server error: ': 404 }), 500);
+//     }
+// })
+// fetchMock(2000)
+//     .then(r => {
+//         return r;
+//     })
+//     .then((d) => console.log('data: ', d))
+//     .catch(e => console.log(e));
 
 
 
