@@ -1,12 +1,27 @@
-"02.01.2020"
+"03.01.2020"
+// Hoisting:
+var fruit = 'grapes';
+var food = function () {
+    console.log("original fruit: ", fruit);
+    var fruit = 'sushi';
+    console.log("My food: ", fruit);
+}
+// food();
 
+// a();
+function a() {
+    console.log('1')
+}
+function a() {
+    console.log('2')
+}
+
+
+"02.01.2020"
 // Object.defineProperty
 const obj0201 = {};
 Object.defineProperty(obj0201, 'myProperty', { value: 43 });
-
 // Decorators:
-
-
 // composition:
 function doSomething(name) {
     console.log('hello, ', name);
@@ -21,8 +36,7 @@ function loggingDecorator(wrapped) {
     }
 }
 const wrapped = loggingDecorator(doSomething);
-const result = wrapped('Pawel');
-console.log('result: ', result);
+// const result = wrapped('Pawel');
 
 'use strict';
 function say(name) {
