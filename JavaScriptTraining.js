@@ -1,3 +1,58 @@
+
+// 'this' key word with lambda functions
+var bunny = {
+    name: 'Usagi',
+    tasks: ['transform', 'eat cake', 'blow kisses'],
+    showTasks: function () {
+        console.log('outer this: ', this);
+        this.tasks.forEach(function (task) {
+            console.log('inner this: ', this)
+            // console.log(this.name + " wants to " + task);
+        }.bind(this));
+    }
+};
+bunny.showTasks();
+
+// var bunny = {
+//     name: 'Usagi',
+//     showName: () => {
+//         console.log("simple test", this.name);
+//     }
+// };
+
+// bunny.showName(); // Usagi
+
+const store = {
+    state: {
+        todos: [
+            { id: 1, text: '...', done: false },
+            { id: 2, text: '...', done: false },
+        ]
+    },
+    getters: {
+        doneTodos: state => {
+            return state.todos.filter(todo => todo.done);
+        },
+        doneTodosCount: (state, getters) => {
+            console.log(this)
+            return this.getters.doneTodos.length
+        }
+    }
+}
+console.log(store.getters.doneTodosCount())
+
+"04.01.2020"
+// Ephemeron - https://www.diki.pl/slownik-angielskiego?q=ephemeron
+// An ephemeron is a data structure that solves two related problems in garbage collected systems.
+// On the one hand, an ephemeron provides a notification when some object is about to be collected.
+// On the other hand, an ephemeron allows data to be associated with some object without creating a reference to that object that will prevent the object from being collected. 
+// An ephemeron is a key-value pair, where the key is the object that the ephemeron guards, notifying the system when that object is collectable, and the value can be any data associated with the object such as a property list, and which may be empty.
+
+
+// Garbage collection:
+// Garbage collection is essentially the opposite of manual memory management.
+// Garbage collection frees the programmer from manually dealing with memory deallocation.
+
 "03.01.2020"
 // Hoisting:
 var fruit = 'grapes';
