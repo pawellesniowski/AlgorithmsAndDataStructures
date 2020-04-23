@@ -1,3 +1,11 @@
+'use strict';
+var foo = 1
+var foobar = function () {
+    console.log("bang: ", foo)
+    var foo = 2
+}
+foobar()
+
 
 // 'this' key word with lambda functions
 var bunny = {
@@ -11,7 +19,7 @@ var bunny = {
         }.bind(this));
     }
 };
-bunny.showTasks();
+// bunny.showTasks();
 
 // var bunny = {
 //     name: 'Usagi',
@@ -21,25 +29,6 @@ bunny.showTasks();
 // };
 
 // bunny.showName(); // Usagi
-
-const store = {
-    state: {
-        todos: [
-            { id: 1, text: '...', done: false },
-            { id: 2, text: '...', done: false },
-        ]
-    },
-    getters: {
-        doneTodos: state => {
-            return state.todos.filter(todo => todo.done);
-        },
-        doneTodosCount: (state, getters) => {
-            console.log(this)
-            return this.getters.doneTodos.length
-        }
-    }
-}
-console.log(store.getters.doneTodosCount())
 
 "04.01.2020"
 // Ephemeron - https://www.diki.pl/slownik-angielskiego?q=ephemeron
