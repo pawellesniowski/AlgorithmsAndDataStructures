@@ -29,7 +29,6 @@
 // console.log(myObjIterator.next().value);
 // console.log(myObjIterator.next().value);
 
-
 // Calling an iterator explicitly, instead for of loop
 // let myString = 'Hello world';
 // let iterator = myString[Symbol.iterator]()
@@ -65,7 +64,6 @@
 //     }
 // }
 // const range2GeneratorObject = range2[Symbol.iterator]();
-
 
 // generators composition:
 // function* innerGenerator(i) {
@@ -123,7 +121,7 @@
 // IN ORDER TO MAKE OBJECT ITERABLE ASYNCHRONOUSLY
 // 1. USE Symblol.asynIterator
 // 2. next() should be async function and return promise
-// 3. iterateing requires use for await(let itenm of myIterableObj){...} 
+// 3. iterateing requires use for await(let itenm of myIterableObj){...}
 // const range = {
 //     from: 1,
 //     to: 10,
@@ -149,7 +147,7 @@
 // })();
 
 // async function return promises by design
-// async function rob() { 
+// async function rob() {
 //     await new Promise(resolve => setTimeout(resolve, 1000));
 //     return 1;
 // };
@@ -171,10 +169,9 @@
 //     }
 // })();
 
-
 // Async iterables
 // to make object iterable we can return object with next method on it, OR return generator (we get it when call generator function*)
-// example one: 
+// example one:
 // function returning iterator (object with next() on it);
 // const objWithIterator = {
 //     from: 1,
@@ -214,20 +211,81 @@
 // }
 // example 3,
 // async generator, we add async key work and like for async generators we use Symbol.asyncIterator
-// const objWithAsyncGenerator = {
-//     from: 6,
-//     to: 9,
-//     async *[Symbol.asyncIterator]() {
-//         for (let i = this.from; i <= this.to; i++) {
-//             await new Promise(resolve => setTimeout(resolve, 1000))
-//             yield i;
-//         }
-//     }
-// };
-// (async () => {
-//     for await (let i of objWithAsyncGenerator) {
-//         console.log(i);
-//     }
-// })();
+const objWithAsyncGenerator = {
+  from: 6,
+  to: 9,
+  async *[Symbol.asyncIterator]() {
+    for (let i = this.from; i <= this.to; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      yield i;
+    }
+  },
+};
+(async () => {
+  for await (let i of objWithAsyncGenerator) {
+    // console.log(i)
+  }
+})();
 
-// home work create function to fetch commits in chanks:
+// home work create function to fetch commits in chanks
+// ..
+
+// Promises
+// state of promise: pending / settled: resolved(fulfilled) or rejected
+// result: undefined / value
+let promiseDelay = new Promise(function (resolve, reject) {
+  console.log("executor started");
+  setTimeout(() => resolve("done after 1 sec."), 1000);
+});
+let proniseImmediately = new Promise((resolve, reject) => {
+  resolve("Done immediately");
+});
+
+// consumers: then, catch, finally
+// promiseDelay
+//   .finally(() => console.log("FINNALY WAS CALLED, LETS CLEAN UP HERE A BIT!"))
+//   .then(console.log)
+//   .catch(console.log);
+
+// Example promises:
+// loadScript:
+function loadScript(src, callback) {
+  let script = document.createElement("script");
+  script.src = src;
+  script.onload = () => callback(null, script);
+  script.onerror = () => callback(new Error("Script load error for", src));
+  document.head.append(script);
+}
+function loadScriptWithPromise(src) {
+  return new Promise((resolve, reject) => {
+    let script = document.createElement("script");
+    script.src = src;
+    script.onload = resolve(script);
+    script.onerror = reject(new Error(`Script load error for: ${src}`));
+    document.head.append(script);
+  });
+}
+// let promiseForLoad = loadScriptWithPromise(
+//   "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"
+// );
+// promiseForLoad.then(
+//   (script) => console.log(`script loaded: ${script}`),
+//   (e) => console.log(`e: `, e);
+// );
+
+const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+// delay(3000).then(() => console.log("runs after 3 seconds"));
+
+let user = fetch("/article/promise-chaining/user.json");
+user
+  .then((res) => res.json())
+  .then((user) => fetch(`https://api.github.com/users/${user.name}`))
+  .then((res) => res.json())
+  .then(
+    (githubUser) =>
+      new Promise((resolve, reject) => {
+        let img = document.createElement("img");
+        img.src = githubUser.avatar_url;
+        // do stuff wiht the DOM...
+      })
+  );
